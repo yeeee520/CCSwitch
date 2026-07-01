@@ -1,0 +1,56 @@
+{
+  "proxyPort": 3456,
+  "providers": [
+    {
+      "id": "p-default-openai",
+      "name": "OpenAI",
+      "baseUrl": "https://api.openai.com",
+      "apiKey": "",
+      "models": "gpt-4o,gpt-4o-mini,gpt-4o-turbo"
+    },
+    {
+      "id": "p-default-anthropic",
+      "name": "Anthropic",
+      "baseUrl": "https://api.anthropic.com",
+      "apiKey": "",
+      "models": "claude-sonnet-4-20250514,claude-sonnet-4"
+    },
+    {
+      "name": "Deepseek",
+      "baseUrl": "https://api.deepseek.com",
+      "apiKey": "",
+      "models": "deepseek-v4-pro",
+      "id": "p-1782892876194"
+    }
+  ],
+  "rules": [
+    {
+      "name": "Deepseek路由",
+      "modelPattern": "deepseek*",
+      "providerId": "p-1782892876194",
+      "modelOverride": "deepseekV4Pro",
+      "id": "r-1782893102801"
+    },
+    {
+      "id": "r-default-gpt4o",
+      "name": "GPT-4o 路由到 OpenAI",
+      "modelPattern": "gpt-4o*",
+      "providerId": "p-default-openai",
+      "modelOverride": ""
+    },
+    {
+      "id": "r-default-claude",
+      "name": "Claude 路由到 Anthropic",
+      "modelPattern": "claude-*",
+      "providerId": "p-default-anthropic",
+      "modelOverride": ""
+    },
+    {
+      "id": "default",
+      "name": "默认路由",
+      "modelPattern": "*",
+      "providerId": "p-default-openai",
+      "modelOverride": ""
+    }
+  ]
+}
